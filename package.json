@@ -2,16 +2,44 @@
   "name": "react-electron",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Luiz H F R Araújo",
+    "email": "luizhbd@gmail.com",
+    "url": "https://github.com/luizhfraraujo"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
+  "build": {
+    "appId": "br.com.luizhfraraujo",
+    "productName": "TODO React Electron",
+    "copyright": "Copyright © 2019 Luiz Araújo",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
   "dependencies": {
+    "electron-is-dev": "^1.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "styled-components": "^4.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"BROWSER=none && yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-build": "yarn build",
+    "electron-build": "electron-builder -mwl"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +55,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.13",
+    "@rescripts/rescript-env": "^0.0.11",
+    "concurrently": "^5.0.0",
+    "electron": "^7.1.1",
+    "electron-builder": "^21.2.0",
+    "typescript": "^3.7.2",
+    "wait-on": "^3.3.0"
   }
 }
